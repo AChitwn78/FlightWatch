@@ -4,7 +4,7 @@ Native SwiftUI prototype for comparing and tracking flight prices. Requires macO
 
 ## Test on Mac
 
-Run `./scripts/build-mac.sh`, then open `../FlightWatch.app`.
+Run `bash scripts/build-mac.sh`, then open `../FlightWatch.app`.
 
 1. Search the sample ORD → LHR route (one adult, economy, one way, USD).
 2. Sort by price, stops or departure. Filter connections and departure hours.
