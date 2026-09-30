@@ -16,17 +16,17 @@
   <header class="topbar">
     <a class="brand" href="#search" aria-label="FlightWatch home">
       <img src="icons/icon-192.png" alt="">
-      <span><strong>FlightWatch</strong><small>by abchitwn</small></span>
+      <span><strong>FlightWatch<sup>™</sup></strong><small>by ab78chitwn</small></span>
     </a>
     <button class="ghost" id="share-app" type="button">↗ Share</button>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" id="search-hero">
       <div>
         <p class="eyebrow">YOUR PERSONAL FARE WATCHER</p>
         <h1>Search the journey.<br><em>Follow the fare.</em></h1>
-        <p>Compare itineraries by price, connections, and departure time. Save the flights that matter and check how their fares move.</p>
+        <p>Compare itineraries by price, connections, and departure time. Save the flights that matter and get price change alerts.</p>
         <div class="status-pill"><span>↓</span> Built to help you find a lower fare</div>
       </div>
       <div class="hero-art" aria-hidden="true">
@@ -48,9 +48,9 @@
           <label><input type="radio" name="trip" value="roundtrip"><span>Round trip</span></label>
         </fieldset>
         <div class="route-grid">
-          <label>From<input id="origin" maxlength="3" inputmode="text" autocomplete="off" value="ORD" required></label>
+          <label class="airport-field">From<input id="origin" inputmode="text" autocomplete="off" value="ORD" placeholder="Airport code or city" aria-autocomplete="list" aria-controls="origin-options" required><span class="airport-options" id="origin-options" role="listbox" hidden></span></label>
           <button id="swap-route" type="button" class="swap" aria-label="Swap airports">⇄</button>
-          <label>To<input id="destination" maxlength="3" inputmode="text" autocomplete="off" value="ZAG" required></label>
+          <label class="airport-field">To<input id="destination" inputmode="text" autocomplete="off" value="ZAG" placeholder="Airport code or city" aria-autocomplete="list" aria-controls="destination-options" required><span class="airport-options" id="destination-options" role="listbox" hidden></span></label>
         </div>
         <div class="two-col">
           <label>Departure<input id="departure-date" type="date" required></label>
@@ -97,7 +97,7 @@
       <p class="links"><a href="privacy.html">Privacy</a><a href="support.html">Support</a><a href="https://serpapi.com/users/sign_up">Create a SerpApi account</a></p>
     </section>
   </main>
-  <footer>FlightWatch is independent and is not affiliated with or endorsed by Google or SerpApi.</footer>
+  <footer>FlightWatch™ is independent and is not affiliated with or endorsed by Google or SerpApi.</footer>
   <script src="app.js" defer></script>
 </body>
 </html>
