@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#063f46">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="FlightWatch">
+  <title>FlightWatch — Find your flight. Follow the fare.</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#search" aria-label="FlightWatch home">
+      <img src="icons/icon-192.png" alt="">
+      <span><strong>FlightWatch</strong><small>by abchitwn</small></span>
+    </a>
+    <button class="ghost" id="share-app" type="button">↗ Share</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">YOUR PERSONAL FARE WATCHER</p>
+        <h1>Search the journey.<br><em>Follow the fare.</em></h1>
+        <p>Compare itineraries by price, connections, and departure time. Save the flights that matter and check how their fares move.</p>
+        <div class="status-pill"><span>↓</span> Built to help you find a lower fare</div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="price big">$</div><div class="route-line"></div><div class="lens"></div><div class="price small">$</div>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="App sections">
+      <button class="active" data-tab="search" type="button">⌕ <span>Search</span></button>
+      <button data-tab="tracking" type="button">⌁ <span>Tracking</span><b id="watch-count">0</b></button>
+      <button data-tab="settings" type="button">⚙ <span>Settings</span></button>
+    </nav>
+
+    <section class="panel active" id="search-panel">
+      <div class="panel-heading"><div><p class="eyebrow">PLAN A TRIP</p><h2>Where are you heading?</h2></div><span class="mode-badge" id="mode-badge">DEMO</span></div>
+      <form id="search-form">
+        <fieldset class="segment" aria-label="Trip type">
+          <label><input type="radio" name="trip" value="oneway" checked><span>One way</span></label>
+          <label><input type="radio" name="trip" value="roundtrip"><span>Round trip</span></label>
+        </fieldset>
+        <div class="route-grid">
+          <label>From<input id="origin" maxlength="3" inputmode="text" autocomplete="off" value="ORD" required></label>
+          <button id="swap-route" type="button" class="swap" aria-label="Swap airports">⇄</button>
+          <label>To<input id="destination" maxlength="3" inputmode="text" autocomplete="off" value="ZAG" required></label>
+        </div>
+        <div class="two-col">
+          <label>Departure<input id="departure-date" type="date" required></label>
+          <label id="return-wrap" hidden>Return<input id="return-date" type="date"></label>
+        </div>
+        <button class="primary" id="search-button" type="submit">Search flights <span>→</span></button>
+      </form>
+
+      <div id="results-tools" class="results-tools" hidden>
+        <div><p class="eyebrow" id="results-stage">RESULTS</p><h2 id="results-title">Choose a flight</h2></div>
+        <button class="text-button" id="back-outbound" type="button" hidden>← Outbound options</button>
+        <div class="filters">
+          <label>Sort<select id="sort"><option value="price">Lowest price</option><option value="stops">Fewest stops</option><option value="departure">Earliest departure</option></select></label>
+          <label>Connections<select id="stops"><option value="2">Up to 2 stops</option><option value="1">Up to 1 stop</option><option value="0">Nonstop</option></select></label>
+          <label>Depart after<select id="after"></select></label>
+          <label>Depart before<select id="before"></select></label>
+        </div>
+      </div>
+      <div class="notice" id="notice" role="status">Choose your route and search. Demo mode works without setup.</div>
+      <div class="cards" id="results"></div>
+    </section>
+
+    <section class="panel" id="tracking-panel">
+      <div class="panel-heading"><div><p class="eyebrow">YOUR WATCHLIST</p><h2>Follow the fare</h2></div><button class="secondary" id="check-now" type="button">Check now</button></div>
+      <p class="muted">Checks run while this web app is open. Missing results keep the previous price.</p>
+      <div class="cards" id="watchlist"></div>
+    </section>
+
+    <section class="panel" id="settings-panel">
+      <div class="panel-heading"><div><p class="eyebrow">CONNECTION</p><h2>Live flight search</h2></div></div>
+      <label class="toggle"><input id="live-mode" type="checkbox"><span></span><b>Use live Google Flights results</b></label>
+      <label>FlightWatch proxy URL<input id="proxy-url" type="url" placeholder="https://your-worker.workers.dev"></label>
+      <label>SerpApi key<input id="api-key" type="password" autocomplete="off" placeholder="Stored only in this browser"></label>
+      <button class="secondary" id="save-settings" type="button">Save connection</button>
+      <p class="fineprint">SerpApi does not allow direct browser requests. The proxy forwards validated flight-search parameters and your key to SerpApi without storing them. Use a proxy you control.</p>
+      <hr>
+      <h3>Notifications and checks</h3>
+      <button class="secondary" id="enable-notifications" type="button">Enable notifications</button>
+      <label>Check while open<select id="check-frequency"><option value="1">Every hour</option><option value="6">Every 6 hours</option><option value="24" selected>Daily</option></select></label>
+      <p class="fineprint">On iPhone, add FlightWatch to the Home Screen before enabling notifications. iOS can suspend this page when closed; continuous background tracking requires a hosted scheduler and Web Push.</p>
+      <hr>
+      <h3>Add to iPhone</h3>
+      <ol class="steps"><li>Open this URL in Safari.</li><li>Tap the Share button.</li><li>Choose <strong>Add to Home Screen</strong>.</li><li>Open FlightWatch from its new icon.</li></ol>
+      <p class="links"><a href="privacy.html">Privacy</a><a href="support.html">Support</a><a href="https://serpapi.com/users/sign_up">Create a SerpApi account</a></p>
+    </section>
+  </main>
+  <footer>FlightWatch is independent and is not affiliated with or endorsed by Google or SerpApi.</footer>
+  <script src="app.js" defer></script>
+</body>
+</html>

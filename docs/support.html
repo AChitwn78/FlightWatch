@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FlightWatch Support</title>
+  <style>body{font:17px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;max-width:760px;margin:48px auto;padding:0 20px;color:#172126}h1,h2{line-height:1.2}a{color:#087f83}.note{background:#f1f7f7;border-radius:12px;padding:16px}</style>
+</head>
+<body>
+  <h1>FlightWatch Support</h1>
+  <p>FlightWatch is an installable web app for one-way and round-trip flight search and fare tracking. Demo search works immediately. Live results use a FlightWatch proxy you control and SerpApi.</p>
+
+  <h2>Getting started</h2>
+  <ol>
+    <li>Open FlightWatch in Safari, tap Share, and choose <strong>Add to Home Screen</strong>.</li>
+    <li>Open the installed app and try a search in Demo mode.</li>
+    <li>For live results, create a SerpApi account and deploy the supplied proxy. Enter both values under Settings and enable live results.</li>
+    <li>Allow notifications if you want price-drop alerts while FlightWatch is checking.</li>
+    <li>Search for an itinerary and choose <strong>Track flight</strong> or <strong>Track round trip</strong>.</li>
+  </ol>
+
+  <p class="note">On iPhone, this version checks tracked fares while FlightWatch is open. Use <strong>Check now</strong> after reopening it. Continuous monitoring while it is closed requires a hosted scheduler and Web Push service.</p>
+
+  <h2>Common issues</h2>
+  <p><strong>Live search fails:</strong> Verify the proxy URL and SerpApi key in Settings. You can turn off live results to use sample data.</p>
+  <p><strong>No notification appeared:</strong> Add FlightWatch to the iPhone Home Screen, enable notifications inside the installed app, then check Apple Settings for FlightWatch notification permissions.</p>
+  <p><strong>A flight was not found during a refresh:</strong> Flight schedules and provider results can change. FlightWatch keeps the previous price and shows the refresh status; search again before booking.</p>
+  <p><strong>Request limit reached:</strong> Check the current allowance and reset date in your SerpApi dashboard.</p>
+
+  <h2>Contact and bug reports</h2>
+  <p>Report a problem in the <a href="https://github.com/AChitwn78/FlightWatch/issues">FlightWatch GitHub repository</a>. Include your device model, iOS or macOS version, steps to reproduce, and a screenshot if helpful. Never include your SerpApi key.</p>
+  <p><a href="privacy.html">Privacy Policy</a></p>
+</body>
+</html>
