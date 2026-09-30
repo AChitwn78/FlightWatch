@@ -1,6 +1,8 @@
 "use strict";
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const state={results:[],outbounds:[],selectedOutbound:null,watches:load("fw-watches",[]),settings:load("fw-settings",{live:false,proxy:"",key:"",frequency:24}),checking:false};
+const DEFAULT_PROXY="https://flightwatch-serpapi-proxy.abchitwn78.workers.dev";
+const savedSettings=load("fw-settings",{});
+const state={results:[],outbounds:[],selectedOutbound:null,watches:load("fw-watches",[]),settings:{live:false,proxy:DEFAULT_PROXY,key:"",frequency:24,...savedSettings,proxy:savedSettings.proxy||DEFAULT_PROXY},checking:false};
 function load(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}}
 function save(key,value){localStorage.setItem(key,JSON.stringify(value))}
 function esc(value){return String(value??"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]))}
